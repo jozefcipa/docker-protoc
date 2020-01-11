@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package common;
+
+import "msg.proto";
+
+service Test {
+    rpc Ping (common.Message) returns (common.Message);
+}
