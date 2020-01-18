@@ -1,0 +1,30 @@
+protoc:
+  version: 3.11.2
+
+lint:
+  group: uber2
+  rules:
+    remove:
+      - FILE_OPTIONS_REQUIRE_JAVA_MULTIPLE_FILES
+      - FILE_OPTIONS_REQUIRE_JAVA_OUTER_CLASSNAME
+      - FILE_OPTIONS_REQUIRE_JAVA_PACKAGE
+      - REQUEST_RESPONSE_TYPES_IN_SAME_FILE # To allow sharing common messages across files
+      - FILE_OPTIONS_REQUIRE_CSHARP_NAMESPACE
+      - FILE_OPTIONS_REQUIRE_OBJC_CLASS_PREFIX
+      - FILE_OPTIONS_REQUIRE_PHP_NAMESPACE
+      - MESSAGES_HAVE_COMMENTS_EXCEPT_REQUEST_RESPONSE_TYPES
+      - REQUEST_RESPONSE_NAMES_MATCH_RPC
+      - SERVICE_NAMES_MATCH_FILE_NAME
+      - SERVICES_HAVE_SENTENCE_COMMENTS
+      - RPCS_HAVE_SENTENCE_COMMENTS
+      - MESSAGES_HAVE_SENTENCE_COMMENTS_EXCEPT_REQUEST_RESPONSE_TYPES
+      - PACKAGE_MAJOR_BETA_VERSIONED
+
+generate:
+  go_options:
+    import_path: .
+  plugins:
+    - name: go
+      type: go
+      flags: plugins=grpc
+      output: /gen/go

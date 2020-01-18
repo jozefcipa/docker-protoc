@@ -1,3 +1,5 @@
+#!/bin/bash
+
 source ./vars.sh
 
 for lang in "${SUPPORTED_LANGUAGES[@]}"; do

@@ -1,0 +1,40 @@
+protoc:
+  version: 3.11.2
+
+lint:
+  group: uber2
+  rules:
+    remove:
+      - FILE_OPTIONS_REQUIRE_JAVA_MULTIPLE_FILES
+      - FILE_OPTIONS_REQUIRE_JAVA_OUTER_CLASSNAME
+      - FILE_OPTIONS_REQUIRE_JAVA_PACKAGE
+      - REQUEST_RESPONSE_TYPES_IN_SAME_FILE
+      - FILE_OPTIONS_REQUIRE_CSHARP_NAMESPACE
+      - FILE_OPTIONS_REQUIRE_OBJC_CLASS_PREFIX
+      - FILE_OPTIONS_REQUIRE_PHP_NAMESPACE
+      - MESSAGES_HAVE_COMMENTS_EXCEPT_REQUEST_RESPONSE_TYPES
+      - REQUEST_RESPONSE_NAMES_MATCH_RPC
+      - SERVICE_NAMES_MATCH_FILE_NAME
+      - SERVICES_HAVE_SENTENCE_COMMENTS
+      - RPCS_HAVE_SENTENCE_COMMENTS
+      - MESSAGES_HAVE_SENTENCE_COMMENTS_EXCEPT_REQUEST_RESPONSE_TYPES
+      - PACKAGE_MAJOR_BETA_VERSIONED
+      - FILE_OPTIONS_EQUAL_GO_PACKAGE_PB_SUFFIX
+      - FILE_OPTIONS_EQUAL_GO_PACKAGE_V2_SUFFIX
+      - FILE_OPTIONS_GO_PACKAGE_NOT_LONG_FORM
+      - FILE_OPTIONS_GO_PACKAGE_SAME_IN_DIR
+      - FILE_OPTIONS_REQUIRE_GO_PACKAGE
+
+generate:
+  plugins:
+    - name: js
+      output: /gen/nodejs
+
+    - name: ts
+      flags: service=grpc-node
+      output: /gen/nodejs
+      path: /home/node/node_modules/.bin/protoc-gen-ts
+
+    - name: grpc
+      output: /gen/nodejs
+      path: /home/node/node_modules/.bin/grpc_tools_node_protoc_plugin
