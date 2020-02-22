@@ -1,12 +1,7 @@
-ARG prototool_version="1.8.0"
-ARG protoc_version="3.11.2"
-
 FROM golang:1.12-stretch AS base
 
-# ARGs are resetted after each FROM statement, this uses default value, defined in global scope
-# See https://docs.docker.com/engine/reference/builder/#understand-how-arg-and-from-interact
-ARG prototool_version
-ARG protoc_version
+ARG prototool_version="1.8.0"
+ARG protoc_version="3.11.2"
 
 # Basic configuration
 RUN set -ex
@@ -24,13 +19,13 @@ RUN curl -sSL \
       mv ./protoc/include/* /usr/local/include/ && \
       rm protoc.zip && rm -rf protoc
 
+# Install documentation plugin
+RUN go get -u github.com/pseudomuto/protoc-gen-doc/cmd/protoc-gen-doc
+
 # ---------------------
 # Protoc - GoLang
 # ---------------------
 FROM base as protoc-go
-
-ARG prototool_version
-ARG protoc_version
 
 # Install Go GRPC generator library
 RUN go get github.com/golang/protobuf/protoc-gen-go
@@ -46,8 +41,6 @@ ENTRYPOINT ["bash", "../entrypoint.sh"]
 # ---------------------
 FROM base as protoc-nodejs
 
-ARG prototool_version
-ARG protoc_version
 ARG nodejs_version="12.x"
 
 # Install NodeJS

@@ -38,3 +38,7 @@ generate:
     - name: grpc
       output: /gen/nodejs
       path: /home/node/node_modules/.bin/grpc_tools_node_protoc_plugin
+
+    - name: doc
+      flags: markdown,README.md
+      output: /gen/nodejs
