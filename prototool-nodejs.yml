@@ -28,6 +28,7 @@ lint:
 generate:
   plugins:
     - name: js
+      flags: import_style=commonjs,binary
       output: /gen/nodejs
 
     - name: ts
